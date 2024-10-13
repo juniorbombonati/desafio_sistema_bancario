@@ -2,7 +2,7 @@ def criar_usuario(nome, data_nascimento, cpf, endereco):
 
     #Somente numero do CPF dever ser armazenados
     #Não são permitidos cpf duplicados
-    return nome, data_nascimento, cpf, endereco
+    return {nome: {"Data de Nascimento": data_nascimento, "CPF": cpf, "Enderço": endereco}}
 
 def criar_conta_corrente(cpf):
 
@@ -77,7 +77,7 @@ Selecione uma das opções abaixo para continuar.
 => """
 
 contas_correntes = []
-clientes = {}
+clientes = []
 lista_cpf = []
 
 #Validação do cliente, caso o cpf não esteja cadastrado, não é possível prosseguir.
@@ -96,10 +96,10 @@ while True:
             nome = input("\nNome: ")
             data_nascimento = input("Data de Nascimento: ")
             endereco = input("Endereço: ")
-            nome, data_nascimento, cpf, endereco = criar_usuario(nome, data_nascimento, validador_cpf, endereco)
+            cliente = criar_usuario(nome, data_nascimento, validador_cpf, endereco)
             AGENCIA, conta_corrente = criar_conta_corrente(validador_cpf)
-            clientes[nome] = {"Data de Nascimento": data_nascimento, "CPF":cpf, "Endereço":endereco, "Agência":AGENCIA, "Número da Conta": conta_corrente}
-            lista_cpf.append(cpf)
+            lista_cpf.append(cliente["CPF"])
+            clientes.append[cliente]
 
     else:
         print("Digite uma opção válida")
